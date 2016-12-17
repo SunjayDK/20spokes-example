@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
-	let(valid_contact) {
+	let(:valid_contact) {
 		Contact.new(
 			first_name: 'Sunjay',
 			last_name: 'Kumar',
@@ -12,33 +12,29 @@ RSpec.describe Contact, type: :model do
 
 	describe 'validations' do
 		
-		before do
-			test_contact = valid_contact.clone
-		end
-		
 		it "validates with valid inputs" do
-			expect(test_contact.save).to be True
+			expect(valid_contact.save).to be true
 		end
 		
 		it "does not require first_name or last_name" do
-			test_contact.first_name = nil
-			test_contact.last_name = nil
-			expect(test_contact.save).to be True
+			valid_contact.first_name = nil
+			valid_contact.last_name = nil
+			expect(valid_contact.save).to be true
 		end
 
 		it "requires email" do
-			test_contact.email = nil
-			expect(test_contact.save).to be_falsey
+			valid_contact.email = nil
+			expect(valid_contact.save).to be_falsey
 		end
 
 		it "requires properly formatted email" do
-			test_contact.email = 'sunjaydk'
-			expect(test_contact.save).to be_falsey
+			valid_contact.email = 'sunjaydk'
+			expect(valid_contact.save).to be_falsey
 		end
 		
 		it "requires message" do
-			test_contact.message = nil
-			expect(test_contact.save).to be_falsey
+			valid_contact.message = nil
+			expect(valid_contact.save).to be_falsey
 		end
 	end
 end
