@@ -30,6 +30,11 @@ RSpec.describe Contact, type: :model do
 			test_contact.email = nil
 			expect(test_contact.save).to be_falsey
 		end
+
+		it "requires properly formatted email" do
+			test_contact.email = 'sunjaydk'
+			expect(test_contact.save).to be_falsey
+		end
 		
 		it "requires message" do
 			test_contact.message = nil
