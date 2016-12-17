@@ -16,10 +16,14 @@ RSpec.describe Contact, type: :model do
 			expect(valid_contact.save).to be true
 		end
 		
-		it "does not require first_name or last_name" do
+		it "requires first_name" do
 			valid_contact.first_name = nil
+			expect(valid_contact.save).to be_falsey
+		end
+		
+		it "requires last_name" do
 			valid_contact.last_name = nil
-			expect(valid_contact.save).to be true
+			expect(valid_contact.save).to be_falsey
 		end
 
 		it "requires email" do
