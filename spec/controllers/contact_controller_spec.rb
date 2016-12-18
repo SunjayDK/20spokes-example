@@ -5,19 +5,20 @@ require 'json'
 describe ContactController do
     describe '#create' do
         
-        let(:json_valid) { { contact: {
+        let(:json_valid) { {
                 first_name: 'Sunjay',
 			    last_name: 'Kumar',
 			    email: "sunjaydk@gmail.com",
 			    message: "Yo what's up?"
-            }}
+            }
         }
-        let(:json_invalid) { { contact: {
+        let(:json_invalid) { {
                 first_name: 'Sunjay',
 			    email: "sunjaydk@gmail.com",
 			    message: "Yo what's up?"
-            }}
+            }
         }
+        
         context 'valid input' do
             it "creates a new contact" do
               expect{
