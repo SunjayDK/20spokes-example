@@ -6,9 +6,8 @@ var ContactForm = React.createClass({
     console.warn('submit has been triggered');
     
     // Get data from form
-    
     // Send data to server
-    
+    sendToServer(formData);
     
     
   },
