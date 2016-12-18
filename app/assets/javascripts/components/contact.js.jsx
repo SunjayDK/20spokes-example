@@ -1,9 +1,8 @@
-var ContactForm = React.createClass({ 
+const ContactForm = React.createClass({ 
   displayName: "ContactForm",
   
   sendToServer: function(formData){
     var data = JSON.stringify(formData);
-    console.log(data);
     
     var promise = $.ajax({
       url: '/contact',
@@ -40,7 +39,10 @@ var ContactForm = React.createClass({
     
   },
   
-
+    handleChange(event) {
+    this.setState({value: event.target.value});
+  },
+  
   render: function(){
     return (
       <div className="container">
@@ -49,22 +51,22 @@ var ContactForm = React.createClass({
             <h2>Contact Us</h2>
             <div className='form-entry'>
               <label>First Name:</label>
-              <input type="text" />
+              <input type="text" value={"this.state.value"} onChange={this.handleChange} />
             </div>
               
 	          <div className='form-entry'>
 	            <label>Last Name:</label>
-              <input type="text" />
+              <input type="text" value={"this.state.value"} onChange={this.handleChange} />
             </div>
             
             <div className='form-entry'>
               <label>Email:</label>
-              <input type="text" />
+              <input type="text" value={"this.state.value"} onChange={this.handleChange} />
             </div>
             
             <div className='form-entry'>
               <label>Message:</label>
-              <textarea />
+              <textarea value={"this.state.value"} onChange={this.handleChange} />
             </div>
             
             <input type='hidden' name='authenticity_token' value={this.props.authenticity_token} />
