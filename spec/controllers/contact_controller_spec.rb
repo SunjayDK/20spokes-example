@@ -34,6 +34,8 @@ describe ContactController do
             end
             
             it "returns an error" do
+                xhr :post, :create, json_invalid
+                expect(response) 
             end
             
         end
