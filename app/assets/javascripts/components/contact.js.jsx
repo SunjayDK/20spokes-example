@@ -4,7 +4,7 @@ var ContactForm = React.createClass({
   handleSubmit: function(event){
     event.preventDefault();
     console.warn('submit has been triggered');
-
+    
     //Submit to server and render success message to user
     
   },
@@ -14,8 +14,9 @@ var ContactForm = React.createClass({
       <div className="container">
         <div className="col-sm-12">
           <form onSubmit={this.handleSubmit}>
+
             <div className="actions">
-              <button className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Submit</button>
             </div>
           </form>
         </div>
