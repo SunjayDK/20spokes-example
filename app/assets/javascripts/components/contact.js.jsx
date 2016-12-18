@@ -2,9 +2,14 @@ class ContactForm extends React.Component{
 
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
+    var self = this;
+    self.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      message: ''
+    };
+    
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
@@ -46,8 +51,20 @@ class ContactForm extends React.Component{
     
   }
   
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleFirstName(event) {
+    self.setState({firstName: event.target.value});
+  }
+  
+  handleLastName(event) {
+    self.setState({lastName: event.target.value});
+  }
+  
+  handleEmail(event) {
+    self.setState({email: event.target.value});
+  }
+  
+  handleMessage(event) {
+    self.setState({message: event.target.value});
   }
   
   render() {
@@ -58,22 +75,22 @@ class ContactForm extends React.Component{
             <h2>Contact Us</h2>
             <div className='form-entry'>
               <label>First Name:</label>
-              <input type="text" value={"this.state.value"} onChange={this.handleChange} />
+              <input type="text" value={this.state.firstName} onChange={this.handleFirstName} />
             </div>
               
 	          <div className='form-entry'>
 	            <label>Last Name:</label>
-              <input type="text" value={"this.state.value"} onChange={this.handleChange} />
+              <input type="text" value={this.state.lastName} onChange={this.handleLastName} />
             </div>
             
             <div className='form-entry'>
               <label>Email:</label>
-              <input type="text" value={"this.state.value"} onChange={this.handleChange} />
+              <input type="text" value={this.state.email} onChange={this.handleEmail} />
             </div>
             
             <div className='form-entry'>
               <label>Message:</label>
-              <textarea value={"this.state.value"} onChange={this.handleChange} />
+              <textarea value={this.state.message} onChange={this.handleMessage} />
             </div>
             
             <input type='hidden' name='authenticity_token' value={this.props.authenticity_token} />
