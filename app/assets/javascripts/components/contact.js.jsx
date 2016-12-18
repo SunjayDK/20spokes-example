@@ -2,12 +2,14 @@ class ContactForm extends React.Component{
 
   constructor(props) {
     super(props);
-    var self = this;
-    self.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      message: ''
+   
+    this.state = { contact:
+      {
+        first_name: '',
+        last_name: '',
+        email: '',
+        message: ''
+      }
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,35 +39,38 @@ class ContactForm extends React.Component{
     event.preventDefault();
     console.warn('submit has been triggered');
     
-    // Get data from form
-    console.log($(event.target));
-    
-    var formData = {
-      first_name: 'Sunjay',
-			email: "sunjaydk@gmail.com",
-			message: "Yo what's up?"
-    };
-    
-    // Send data to server
-    this.sendToServer(formData);
+    // Send state data to server
+    this.sendToServer(this.state.contact);
     
   }
   
-  handleFirstName(event) {
-    self.setState({firstName: event.target.value});
+  // Changing each form input individually
+  
+  changeFirstName(event) {
+    const contact = this.state.contact;
+    contact.first_name = event.target.value;
+    this.setState({contact: contact });
   }
   
-  handleLastName(event) {
-    self.setState({lastName: event.target.value});
+  changeLastName(event) {
+    const contact = this.state.contact;
+    contact.last_name = event.target.value;
+    this.setState({contact: contact });
   }
   
-  handleEmail(event) {
-    self.setState({email: event.target.value});
+  changeEmail(event) {
+    const contact = this.state.contact;
+    contact.email = event.target.value;
+    this.setState({contact: contact });
   }
   
-  handleMessage(event) {
-    self.setState({message: event.target.value});
+  changeMessage(event) {
+    const contact = this.state.contact;
+    contact.message = event.target.value;
+    this.setState({contact: contact });
   }
+  
+  // Rendering the whole form
   
   render() {
     return (
@@ -75,22 +80,22 @@ class ContactForm extends React.Component{
             <h2>Contact Us</h2>
             <div className='form-entry'>
               <label>First Name:</label>
-              <input type="text" value={this.state.firstName} onChange={this.handleFirstName} />
+              <input type="text" name="first_name" placeholder="Enter First Name Here" onChange={this.changeFirstName.bind(this)} value={this.state.contact.first_name} />
             </div>
               
 	          <div className='form-entry'>
 	            <label>Last Name:</label>
-              <input type="text" value={this.state.lastName} onChange={this.handleLastName} />
+              <input type="text" name="last_name" placeholder="Enter Last Name Here" onChange={this.changeLastName.bind(this)} value={this.state.contact.last_name} />
             </div>
             
             <div className='form-entry'>
               <label>Email:</label>
-              <input type="text" value={this.state.email} onChange={this.handleEmail} />
+              <input type="text" name="email" placeholder="Enter Email Here" onChange={this.changeEmail.bind(this)} value={this.state.contact.email} />
             </div>
             
             <div className='form-entry'>
               <label>Message:</label>
-              <textarea value={this.state.message} onChange={this.handleMessage} />
+              <textarea name="message" placeholder="Enter Mess age Here" onChange={this.changeMessage.bind(this)} value={this.state.contact.message} />
             </div>
             
             <input type='hidden' name='authenticity_token' value={this.props.authenticity_token} />
