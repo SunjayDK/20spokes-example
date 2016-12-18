@@ -31,9 +31,11 @@ class ContactForm extends React.Component{
     });
     
     promise.fail(function(jqXHR,  textStatus,  errorThrown) {
-      alert("Could not submit because " + errorThrown)
+      alert(errorThrown)
     });
   }
+
+
 
   handleSubmit(event) {
     event.preventDefault();

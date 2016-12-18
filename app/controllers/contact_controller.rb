@@ -5,11 +5,10 @@ class ContactController < ApplicationController
   def create
     if request.xhr?
       contact = Contact.new(contact_params)
-      p contact
       if contact.save
-        render :nothing => true, status: 200
+        render :json => contact, status: 200
       else
-        render :json => { error: contact.errors.full_messages.first }, status: 400
+        render :json => { error: contact.errors.full_messages.first }, status: 420
       end
     else
       render :nothing => true, status: 400
