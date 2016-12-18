@@ -1,7 +1,14 @@
-const ContactForm = React.createClass({ 
-  displayName: "ContactForm",
-  
-  sendToServer: function(formData){
+class ContactForm extends React.Component{ 
+
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  };
+
+  sendToServer(formData) {
     var data = JSON.stringify(formData);
     
     var promise = $.ajax({
@@ -19,9 +26,9 @@ const ContactForm = React.createClass({
     promise.fail(function(jqXHR,  textStatus,  errorThrown) {
       alert("Could not submit because " + errorThrown)
     });
-  },
+  }
 
-  handleSubmit: function(event){
+  handleSubmit(event) {
     event.preventDefault();
     console.warn('submit has been triggered');
     
@@ -37,13 +44,13 @@ const ContactForm = React.createClass({
     // Send data to server
     this.sendToServer(formData);
     
-  },
+  }
   
-    handleChange(event) {
+  handleChange(event) {
     this.setState({value: event.target.value});
-  },
+  }
   
-  render: function(){
+  render() {
     return (
       <div className="container">
         <div className="col-sm-12">
@@ -79,4 +86,4 @@ const ContactForm = React.createClass({
       </div>
     )
   }
-})
+}
