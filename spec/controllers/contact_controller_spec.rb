@@ -5,24 +5,37 @@ require 'json'
 describe ContactController do
     describe '#create' do
         
-        let(:json_valid) { {
+        let(:json_valid) { { contact: {
                 first_name: 'Sunjay',
 			    last_name: 'Kumar',
 			    email: "sunjaydk@gmail.com",
 			    message: "Yo what's up?"
-            }.to_json
+            }}
         }
-        let(:json_invalid) { {
+        let(:json_invalid) { { contact: {
                 first_name: 'Sunjay',
 			    email: "sunjaydk@gmail.com",
 			    message: "Yo what's up?"
-            }.to_json
+            }}
         }
+        context 'valid input' do
+            it "creates a new contact" do
+              expect{
+                xhr :post, :create, json_valid
+              }.to change{Contact.count}.by(1)
+            end
+        end
         
-        it "creates a new contact" do
-          expect{
-            post :create, json_valid
-          }.to change{Contact.count}.by(1)
+        context 'invalid input' do
+            it "does creates a new contact" do
+              expect{
+                xhr :post, :create, json_invalid
+              }.to change{Contact.count}.by(0)
+            end
+            
+            it "returns an error" do
+            end
+            
         end
     end
   end
