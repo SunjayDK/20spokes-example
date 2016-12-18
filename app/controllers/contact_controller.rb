@@ -8,7 +8,7 @@ class ContactController < ApplicationController
       if contact.save
         render :nothing => true, status: 200
       else
-        render :json => { error: contact.errors.full_messages.first }
+        render :json => { error: contact.errors.full_messages.first }, status: 400
       end
     else
       render :nothing => true, status: 400
@@ -18,8 +18,6 @@ class ContactController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(
-      :first_name, :last_name, :email, :message
-      )
+    params.permit(:first_name, :last_name, :email, :message)
   end
 end
