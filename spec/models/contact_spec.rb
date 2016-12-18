@@ -5,7 +5,7 @@ RSpec.describe Contact, type: :model do
 		Contact.new(
 			first_name: 'Sunjay',
 			last_name: 'Kumar',
-			email: "lorenzianheteroceran@gmail.com",
+			email: "sunjaydk@gmail.com",
 			message: "Yo what's up?"
 		)
 	}
