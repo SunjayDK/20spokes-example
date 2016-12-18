@@ -8,7 +8,7 @@ class ContactController < ApplicationController
       if contact.save
         render :nothing => true, status: 200
       else
-        render :json => { error: contact.errors.first }
+        render :json => { error: contact.errors.full_messages.first }
       end
     else
       render :nothing => true, status: 400
