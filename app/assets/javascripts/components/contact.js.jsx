@@ -106,6 +106,7 @@ class ContactForm extends React.Component{
               <button type="submit" className="btn btn-block btn-primary">Submit</button>
             </div>
           </form>
+          <div id="confirmation" className="hidden"><h2>Contact submitted!</h2></div>
         </div>
       </div>
     )
