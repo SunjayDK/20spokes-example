@@ -27,7 +27,8 @@ class ContactForm extends React.Component{
     });
     
     promise.done(function(){
-      alert("Contact submitted!");
+      $('#confirmation').removeClass("hidden");
+      $('#submit-button').addClass("hidden");
     });
     
     promise.fail(function(jqXHR,  textStatus,  errorThrown) {
@@ -103,10 +104,10 @@ class ContactForm extends React.Component{
             <input type='hidden' name='authenticity_token' value={this.props.authenticity_token} />
             
             <div className="actions">
-              <button type="submit" className="btn btn-block btn-primary">Submit</button>
+              <button type="submit" id="submit-button" className="btn btn-block btn-primary">Submit</button>
             </div>
           </form>
-          <div id="confirmation" className="hidden"><h2>Contact submitted!</h2></div>
+          <div id="confirmation" className="hidden"><h2>Message submitted!</h2></div>
         </div>
       </div>
     )
